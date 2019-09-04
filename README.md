@@ -1,5 +1,10 @@
-pi-clap
+rpi-clapper
 =======
+
+Infrastructure based on prior art: https://github.com/nikhiljohn10/pi-clap
+Integrated with Google Home Assistant for control of my room lights (no guarantee to work with yours :) ).
+Clap detection based on convolution with "golden_clap" model.
+Uses respeaker 4-mic array.
 
 Clap detection and singnaling program for Raspberry Pi
 
