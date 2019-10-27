@@ -93,8 +93,19 @@ def main():
     threshold = 20000
     max_value = 0
     p = pyaudio.PyAudio()
+    info = p.get_host_api_info_by_index(0)
+    numdevices = info.get('deviceCount')
+    card_num = 0
+    for i in range(numdevices):
+        if (p.get_device_info_by_host_api_device_index(0, i).get('maxInputChannels')) > 0:
+            nom = p.get_device_info_by_host_api_device_index(0, i).get('name')
+            print ("Input Device id ", i, " - ", nom)
+            if "seeed" in nom:
+                card_num = i
+                
     stream = p.open(format=FORMAT,
                     channels=CHANNELS, 
+                    input_device_index = card_num,
                     rate=RATE, 
                     input=True,
                     output=True,
