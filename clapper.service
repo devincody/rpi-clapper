@@ -1,0 +1,27 @@
+# Install:
+#    sudo ln -s `pwd`/clapper.service /etc/systemd/system
+#    sudo systemctl daemon-reload
+#
+# Start on each boot:
+#    sudo systemctl enable clapper.service
+#
+# Start right now:
+#    sudo systemctl start clapper.service
+
+[Unit]
+Description=Clapper Light Service
+Wants=network-online.target
+After=network-online.target
+Wants=systemd-timesyncd.service
+After=systemd-timesyncd.service
+
+[Service]
+Environment=DISPLAY=:0
+EnvironmentFile=/home/pi/IFTTT.env
+Type=simple
+Restart=always
+User=pi
+ExecStart=/usr/bin/python3 -u /home/pi/Documents/rpi-clapper/main.py
+
+[Install]
+WantedBy=multi-user.target
