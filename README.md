@@ -2,8 +2,9 @@ rpi-clapper
 =======
 
 * Infrastructure based on prior art: https://github.com/nikhiljohn10/pi-clap
-* Integrated with Google Home Assistant for control of my room lights (no guarantee to work with yours :) ).
-* Clap detection based on convolution with "golden_clap" model.
+* Integrated with IFTTT for control of my room lights (no guarantee to work with yours :) ).
+* Google home used with IFTTT for pausing, commanding of device.
+* Clap detection based on comparative convolution with "golden_clap" model.
 * Uses respeaker 4-mic array.
 
 Clap detection and singnaling program for Raspberry Pi
@@ -12,8 +13,6 @@ Clap detection and singnaling program for Raspberry Pi
 
  * Raspberry Pi
  * Microphone
- * Audio Card
- * Bread Board (optional)
 
 ### Dependencies
 
@@ -21,10 +20,15 @@ Clap detection and singnaling program for Raspberry Pi
 
  * RPi.GPIO
  * pyaudio
+ * pixel_ring 
+ * gpiozero 
+ * py_audio
+ * requests
+ * watchdog
 
 **Other**
 
- * Rasbian OS [3].( Need to test. Not working with Pidora OS)
+ * Rasbian OS [3]
  * Audio Driver [1],[2],[3].
 
 ### Setting up
@@ -34,8 +38,9 @@ Clap detection and singnaling program for Raspberry Pi
 3. Install all dependecies
 4. Connect the output line to BCM #24 Pin on RPi.
 5. Run 'sudo python main.py' command in terminal.
+6. Setup google home to send webhook with a single number to enable clapper pausing
 
-( Try 2 claps to activate the output line for 1 sec. Note: Use 4 claps to exit from the system )
+2 claps to turn off lights, 3 claps to turn on lights.
 
 ### References
 
