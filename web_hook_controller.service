@@ -1,0 +1,27 @@
+# Install:
+#    sudo ln -s `pwd`/web_hook_controller.service /etc/systemd/system
+#    sudo systemctl daemon-reload
+#
+# Start on each boot:
+#    sudo systemctl enable web_hook_controller.service
+#
+# Start right now:
+#    sudo systemctl start web_hook_controller.service
+
+[Unit]
+Description=Web Hook Controller Light Service
+Wants=network-online.target
+After=network-online.target
+Wants=systemd-timesyncd.service
+After=systemd-timesyncd.service
+
+[Service]
+Environment=DISPLAY=:0
+EnvironmentFile=/home/pi/IFTTT.env
+Type=simple
+Restart=always
+User=pi
+ExecStart=/usr/bin/python3 -u /home/pi/Documents/rpi-clapper/web_hook_controller.py
+
+[Install]
+WantedBy=multi-user.target
